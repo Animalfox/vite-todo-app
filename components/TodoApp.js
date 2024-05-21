@@ -16,7 +16,15 @@ export class TodoApp {
   }
 
   bindEvents() {
-    this.element.querySelector('#add-task-button').addEventListener('click', () => this.addTask());
+    const addButton = this.element.querySelector('#add-task-button');
+    const taskInput = this.element.querySelector('#task-input');
+
+    addButton.addEventListener('click', () => this.addTask());
+    taskInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        this.addTask();
+      }
+    });
   }
 
   addTask() {
@@ -66,16 +74,20 @@ export class TodoApp {
 
     taskList.innerHTML = this.tasks.map(task => `
       <li>
-        <input type="checkbox" onclick="todoApp.toggleTaskCompletion('${task.id}')">
-        ${task.text}
+        <label>
+          <input type="checkbox" onclick="todoApp.toggleTaskCompletion('${task.id}')">
+          ${task.text}
+        </label>
         <button onclick="todoApp.deleteTask('${task.id}', false)">Delete</button>
       </li>
     `).join('');
 
     completedList.innerHTML = this.completedTasks.map(task => `
       <li>
-        <input type="checkbox" checked onclick="todoApp.toggleTaskCompletion('${task.id}')">
-        ${task.text}
+        <label>
+          <input type="checkbox" checked onclick="todoApp.toggleTaskCompletion('${task.id}')">
+          ${task.text}
+        </label>
         <button onclick="todoApp.deleteTask('${task.id}', true)">Delete</button>
       </li>
     `).join('');
