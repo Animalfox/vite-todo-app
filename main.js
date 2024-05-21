@@ -1,7 +1,7 @@
 import './style.css'
 import javascriptLogo from './javascript.svg'
 import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import { setupTodoApp } from '/components/TodoApp';
 
 document.querySelector('#app').innerHTML = `
   <div>
@@ -11,14 +11,14 @@ document.querySelector('#app').innerHTML = `
     <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
       <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
     </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
+    <h1>Todo App</h1>
+    <input type="text" id="task-input" placeholder="Enter a new task" />
+    <button id="add-task-button">Add Task</button>
+    <h2>Tasks</h2>
+    <ul id="task-list"></ul>
+    <h2>Completed Tasks</h2>
+    <ul id="completed-list"></ul>
   </div>
 `
 
-setupCounter(document.querySelector('#counter'))
+setupTodoApp(document.querySelector('#app'));
